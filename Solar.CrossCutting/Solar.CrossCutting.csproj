@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Solar.Application\Solar.Application.csproj" />
+      <ProjectReference Include="..\Solar.Domain\Solar.Domain.csproj" />
+      <ProjectReference Include="..\Solar.Infrastructure\Solar.Infrastructure.csproj" />
+    </ItemGroup>
+
+</Project>
