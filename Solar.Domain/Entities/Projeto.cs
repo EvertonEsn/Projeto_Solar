@@ -27,6 +27,8 @@ public class Projeto : Entity
 
     public ICollection<Procedimento> Procedimentos { get; set; }
 
+    public Projeto() { }
+
     public Projeto(string nome, string localizacao, DateTime dataInicio, DateTime dataFinal,
         decimal valorTotal, Guid clienteId, Guid liderTecnicoId)
     {

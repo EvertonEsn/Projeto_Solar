@@ -12,6 +12,8 @@ public class Tecnico : Entity
     public ICollection<Projeto> ProjetosLider { get; set; }
     public ICollection<Projeto> ProjetosMembro { get; set; }
 
+    public Tecnico() { }
+
     public Tecnico(string nome, string cargo)
     {
         Nome = new Nome(nome);

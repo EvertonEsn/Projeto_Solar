@@ -10,6 +10,8 @@ public sealed class Cliente : Entity
     
     public ICollection<Projeto> Projetos { get; set; }
 
+    public Cliente() { }
+
     public Cliente(string nome, string email)
     {
         Nome = new Nome(nome);

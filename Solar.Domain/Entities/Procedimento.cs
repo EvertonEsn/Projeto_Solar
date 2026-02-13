@@ -14,6 +14,8 @@ public class Procedimento : Entity
     
     public Projeto Projeto { get; set; }
 
+    public Procedimento() { }
+
     public Procedimento(string descricao, Guid projetoId)
     {
         Concluido = false;
