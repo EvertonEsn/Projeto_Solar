@@ -19,8 +19,6 @@ public class CreateProjetoResponse
     [Required(ErrorMessage = "Data de Início é obrigatória")]
     public DateTime DataInicio { get; set; }
 
-    public DateTime? DataFinal { get; set; }
-
     [Required(ErrorMessage = "Valor Total é obrigatório")]
     public decimal ValorTotal { get; set; }
 

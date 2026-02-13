@@ -18,8 +18,6 @@ public class CreateProjetoRequest
     [Required(ErrorMessage = "Data de Início é obrigatória")]
     public DateTime DataInicio { get; set; }
 
-    public DateTime? DataFinal { get; set; }
-
     [Required(ErrorMessage = "Valor Total é obrigatório")]
     [Range(0, double.MaxValue, ErrorMessage = "Valor Total não pode ser negativo")]
     public decimal ValorTotal { get; set; }
