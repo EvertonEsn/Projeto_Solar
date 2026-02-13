@@ -1,7 +1,4 @@
-using System.ComponentModel.DataAnnotations;
-using System.Text.Json.Serialization;
 using Solar.Domain.Types;
-using Solar.Domain.Validation;
 
 namespace Solar.Domain.Entities;
 
