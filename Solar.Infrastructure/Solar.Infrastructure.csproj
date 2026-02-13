@@ -11,9 +11,15 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Context\" />
-      <Folder Include="EntitiesConfiguration\" />
-      <Folder Include="Repositories\" />
+      <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.13">
+        <PrivateAssets>all</PrivateAssets>
+        <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      </PackageReference>
+      <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="11.0.0-preview.1.26104.118">
+        <PrivateAssets>all</PrivateAssets>
+        <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      </PackageReference>
+      <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="9.0.0" />
     </ItemGroup>
 
 </Project>
