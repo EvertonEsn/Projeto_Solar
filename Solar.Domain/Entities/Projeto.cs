@@ -29,7 +29,7 @@ public class Projeto : Entity
 
     public Projeto() { }
 
-    public Projeto(string nome, string localizacao, DateTime dataInicio, DateTime dataFinal,
+    public Projeto(string nome, string localizacao,
         decimal valorTotal, Guid clienteId, Guid liderTecnicoId)
     {
         Nome = new Nome(nome);
@@ -57,6 +57,19 @@ public class Projeto : Entity
 
         DomainExceptionValidation.When(valorTotal < 0,
             "Valor total não pode ser negativo.");
+    }
+
+    public void Update(string nome, string localizacao, DateTime dataInicio, 
+        DateTime? dataFinal, decimal valorTotal, Guid liderTecnicoId)
+    {
+        Nome = new Nome(nome);
+        ValidateDomain(localizacao, valorTotal);
+        
+        Localizacao = localizacao;
+        DataInicio = dataInicio;
+        DataFinal = dataFinal;
+        ValorTotal = valorTotal;
+        LiderTecnicoId = liderTecnicoId;
     }
 
     private void AlterarDataConclusao(DateTime novaData)

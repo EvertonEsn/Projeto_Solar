@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using Solar.Application.Validation.ProjetoValidators;
 
 namespace Solar.Application.DTOs.Projeto;
 

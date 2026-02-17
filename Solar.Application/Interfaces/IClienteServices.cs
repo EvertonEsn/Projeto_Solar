@@ -6,11 +6,11 @@ public interface IClienteServices
 {
     Task<IEnumerable<ClienteResponse>> GetClientes();
     
-    Task<ClienteResponse?> GetById(int? id);
+    Task<ClienteResponse?> GetById(Guid id);
     
-    Task<CreateClienteResponse> Create(CreateClienteRequest cliente);
+    Task<CreateClienteResponse> Create(CreateClienteRequest clienteRequest);
     
-    Task<UpdateClienteResponse> Update(int? id, UpdateClienteRequest cliente);
+    Task<UpdateClienteResponse?> Update(Guid id, UpdateClienteRequest clienteRequest);
     
-    Task<ClienteResponse> RemoveAsync(int? id);
+    Task<ClienteResponse?> RemoveAsync(Guid id);
 }

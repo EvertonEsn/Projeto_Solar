@@ -24,6 +24,13 @@ public class Procedimento : Entity
         Descricao = descricao;
         ProjetoId = projetoId;
     }
+
+    public void Update(string descricao, bool concluido)
+    {
+        ValidateDomain(descricao);
+        Descricao = descricao;
+        AlterarConclusao(concluido);
+    }
     
     private void ValidateDomain(string descricao)
     {
@@ -39,18 +46,19 @@ public class Procedimento : Entity
 
     private void AlterarConclusao(bool concluido)
     {
-        if (concluido)
+        if (Concluido != concluido)
         {
-            if (!Concluido)
+            if (concluido)
             {
                 Concluido = true;
                 DataConclusao = DateTime.Now;
             }
+            else
+            {
+                Concluido = false;
+                DataConclusao = null;
+            }
         }
-        else
-        {
-            Concluido = false;
-            DataConclusao = null;
-        }
+        
     }
 }

@@ -6,11 +6,11 @@ public interface IProcedimentoServices
 {
     Task<IEnumerable<ProcedimentoResponse>> GetProcedimentos();
     
-    Task<ProcedimentoResponse?> GetById(Guid? id);
+    Task<ProcedimentoResponse?> GetById(Guid id);
     
     Task<CreateProcedimentoResponse> Create(CreateProcedimentoRequest procedimento);
     
-    Task<UpdateProcedimentoResponse> Update(Guid? id, UpdateProcedimentoRequest procedimento);
+    Task<UpdateProcedimentoResponse?> Update(Guid id, UpdateProcedimentoRequest procedimentoRequest);
     
-    Task<ProcedimentoResponse> RemoveAsync(Guid? id);
+    Task<ProcedimentoResponse?> RemoveAsync(Guid id);
 }
