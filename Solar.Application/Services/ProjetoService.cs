@@ -1,4 +1,5 @@
 using AutoMapper;
+using Solar.API.Exceptions;
 using Solar.Application.DTOs.Projeto;
 using Solar.Application.Interfaces;
 using Solar.Domain.Entities;
@@ -9,17 +10,22 @@ namespace Solar.Application.Services;
 public class ProjetoService : IProjetoServices
 {
     private readonly IProjetoRepository _projetoRepository;
+    private readonly IClienteRepository _clienteRepository;
+    private readonly ITecnicoRepository _tecnicoRepository;
     private readonly IMapper _mapper;
 
-    public ProjetoService(IProjetoRepository projetoRepository, IMapper mapper)
+    public ProjetoService(IProjetoRepository projetoRepository, IMapper mapper, IClienteRepository clienteRepository, ITecnicoRepository tecnicoRepository)
     {
         _projetoRepository = projetoRepository;
+        _clienteRepository = clienteRepository;
+        _tecnicoRepository = tecnicoRepository;
         _mapper = mapper;
     }
 
     public async Task<IEnumerable<ProjetoResponse>> GetProjetos()
     {
         var projetosEntities = await _projetoRepository.GetProjetosAsync();
+        
         return _mapper.Map<IEnumerable<ProjetoResponse>>(projetosEntities);
     }
 
@@ -29,7 +35,7 @@ public class ProjetoService : IProjetoServices
         
         if (projetoEntity == null)
         {
-            return null;
+            throw new NotFoundException("Projeto nao encontrado");
         }
         
         return _mapper.Map<ProjetoResponse>(projetoEntity);
@@ -42,7 +48,8 @@ public class ProjetoService : IProjetoServices
             projetoRequest.Localizacao,
             projetoRequest.ValorTotal, 
             projetoRequest.ClienteId, 
-            projetoRequest.LiderTecnicoId
+            projetoRequest.LiderTecnicoId,
+            projetoRequest.DataInicio
         );
         
         var projetoEntity = await _projetoRepository.CreateAsync(projeto);
@@ -54,7 +61,7 @@ public class ProjetoService : IProjetoServices
     {
         var projeto = await _projetoRepository.GetByIdAsync(id);
 
-        if (projeto is null) return null;
+        if (projeto is null) throw new NotFoundException("Projeto nao encontrado");
         
         projeto.Update(
             projetoRequest.Nome,
@@ -74,7 +81,7 @@ public class ProjetoService : IProjetoServices
     {
         var projetoEntity = await _projetoRepository.GetByIdAsync(id);
         
-        if (projetoEntity is null) return null;
+        if (projetoEntity is null) throw new NotFoundException("Projeto nao encontrado");
 
         await _projetoRepository.RemoveAsync(projetoEntity);
         

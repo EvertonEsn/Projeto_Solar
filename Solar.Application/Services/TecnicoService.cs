@@ -1,4 +1,5 @@
 using AutoMapper;
+using Solar.API.Exceptions;
 using Solar.Application.DTOs.Tecnico;
 using Solar.Application.Interfaces;
 using Solar.Domain.Entities;
@@ -20,6 +21,7 @@ public class TecnicoService : ITecnicoServices
     public async Task<IEnumerable<TecnicoResponse>> GetTecnicos()
     {
         var tecnicosEntities = await _tecnicoRepository.GetTecnicosAsync();
+        
         return _mapper.Map<IEnumerable<TecnicoResponse>>(tecnicosEntities);
     }
 
@@ -27,9 +29,9 @@ public class TecnicoService : ITecnicoServices
     {
         var tecnicoEntity = await _tecnicoRepository.GetByIdAsync(id);
         
-        if (tecnicoEntity == null)
+        if (tecnicoEntity is null)
         {
-            return null;
+            throw new NotFoundException("Tecnico nao encontrado");
         }
         
         return _mapper.Map<TecnicoResponse>(tecnicoEntity);
@@ -48,7 +50,7 @@ public class TecnicoService : ITecnicoServices
     {
         var tecnico = await _tecnicoRepository.GetByIdAsync(id);
 
-        if (tecnico is null) return null;
+        if (tecnico is null) throw new NotFoundException("Tecnico nao encontrado");
         
         tecnico.Update(tecnicoRequest.Nome, tecnicoRequest.Cargo);
 
@@ -61,7 +63,7 @@ public class TecnicoService : ITecnicoServices
     {
         var tecnicoEntity = await _tecnicoRepository.GetByIdAsync(id);
         
-        if (tecnicoEntity is null) return null;
+        if (tecnicoEntity is null) throw new NotFoundException("Tecnico nao encontrado");
 
         await _tecnicoRepository.RemoveAsync(tecnicoEntity);
         

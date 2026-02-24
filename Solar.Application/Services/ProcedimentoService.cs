@@ -1,4 +1,5 @@
 using AutoMapper;
+using Solar.API.Exceptions;
 using Solar.Application.DTOs.Procedimento;
 using Solar.Application.Interfaces;
 using Solar.Domain.Entities;
@@ -20,6 +21,7 @@ public class ProcedimentoService : IProcedimentoServices
     public async Task<IEnumerable<ProcedimentoResponse>> GetProcedimentos()
     {
         var procedimentosEntities = await _procedimentoRepository.GetProcedimentosAsync();
+        
         return _mapper.Map<IEnumerable<ProcedimentoResponse>>(procedimentosEntities);
     }
 
@@ -27,9 +29,9 @@ public class ProcedimentoService : IProcedimentoServices
     {
         var procedimentoEntity = await _procedimentoRepository.GetByIdAsync(id);
         
-        if (procedimentoEntity == null)
+        if (procedimentoEntity is null)
         {
-            return null;
+            throw new NotFoundException("Procedimento nao encontrado");
         }
         
         return _mapper.Map<ProcedimentoResponse>(procedimentoEntity);
@@ -48,7 +50,7 @@ public class ProcedimentoService : IProcedimentoServices
     {
         var procedimento = await _procedimentoRepository.GetByIdAsync(id);
 
-        if (procedimento is null) return null;
+        if (procedimento is null) throw new NotFoundException("Procedimento nao encontrado");
         
         procedimento.Update(procedimentoRequest.Descricao, procedimentoRequest.Concluido);
 
@@ -61,7 +63,7 @@ public class ProcedimentoService : IProcedimentoServices
     {
         var procedimentoEntity = await _procedimentoRepository.GetByIdAsync(id);
         
-        if (procedimentoEntity is null) return null;
+        if (procedimentoEntity is null) throw new NotFoundException("Procedimento nao encontrado");
 
         await _procedimentoRepository.RemoveAsync(procedimentoEntity);
         

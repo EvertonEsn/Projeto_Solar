@@ -22,4 +22,6 @@ public record Nome
 
     // Facilita a conversão implícita para string quando necessário
     public static implicit operator string(Nome nome) => nome.Valor;
+
+    public override string ToString() => Valor;
 }

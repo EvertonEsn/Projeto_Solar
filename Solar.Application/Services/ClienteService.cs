@@ -1,4 +1,6 @@
+using System.Globalization;
 using AutoMapper;
+using Solar.API.Exceptions;
 using Solar.Application.DTOs.Cliente;
 using Solar.Application.Interfaces;
 using Solar.Domain.Entities;
@@ -20,6 +22,7 @@ public class ClienteService : IClienteServices
     public async Task<IEnumerable<ClienteResponse>> GetClientes()
     {
         var clientesEntities = await _clienteRepository.GetClientesAsync();
+        
         return _mapper.Map<IEnumerable<ClienteResponse>>(clientesEntities);
     }
 
@@ -29,7 +32,7 @@ public class ClienteService : IClienteServices
         
         if (clienteEntity == null)
         {
-            return null;
+            throw new NotFoundException("Cliente nao encontrado");
         }
         
         return _mapper.Map<ClienteResponse>(clienteEntity);
@@ -48,7 +51,7 @@ public class ClienteService : IClienteServices
     {
         var cliente = await _clienteRepository.GetByIdAsync(id);
 
-        if (cliente is null) return null;
+        if (cliente is null) throw new NotFoundException("Cliente nao encontrado");
         
         cliente.Update(clienteRequest.Nome, clienteRequest.Email);
 
@@ -61,7 +64,7 @@ public class ClienteService : IClienteServices
     {
         var clienteEntity = await _clienteRepository.GetByIdAsync(id);
         
-        if (clienteEntity is null) return null;
+        if (clienteEntity is null) throw new NotFoundException("Cliente nao encontrado");
 
         await _clienteRepository.RemoveAsync(clienteEntity);
         

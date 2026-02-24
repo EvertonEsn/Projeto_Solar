@@ -4,17 +4,26 @@ using Solar.Domain.Interfaces;
 
 namespace Solar.Application.Validation.ProjetoValidators;
 
-public class UpdateProjetoValidator : AbstractValidator<UpdateProjetoRequest>
+public class CreateProjetoValidator : AbstractValidator<CreateProjetoRequest>
 {
+
+    private readonly IClienteRepository _clienteRepository;
+
     private readonly ITecnicoRepository _tecnicoRepository;
     
-    public UpdateProjetoValidator(ITecnicoRepository tecnicoRepository)
+    public CreateProjetoValidator(IClienteRepository clienteRepository, ITecnicoRepository tecnicoRepository)
     {
+        _clienteRepository = clienteRepository;
         _tecnicoRepository = tecnicoRepository;
         
-        RuleFor(x => x.DataFinal)
-            .GreaterThan(x => x.DataInicio)
-            .WithMessage("A data de conclusão não pode ser anterior ou igual à data de início do projeto.");
+        RuleFor(p => p.ClienteId)
+            .MustAsync(async (id, cancellation) =>
+            {
+                var cliente = await _clienteRepository.GetByIdAsync(id);
+
+                return cliente != null;
+            })
+            .WithMessage("Cliente informado não existe.");
         
         RuleFor(p => p.LiderTecnicoId)
             .MustAsync(async (id, cancellation) =>
@@ -25,4 +34,5 @@ public class UpdateProjetoValidator : AbstractValidator<UpdateProjetoRequest>
             })
             .WithMessage("Lider tecnico informado não existe.");
     }
+    
 }

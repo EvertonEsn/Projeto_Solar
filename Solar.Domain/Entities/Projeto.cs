@@ -30,10 +30,10 @@ public class Projeto : Entity
     public Projeto() { }
 
     public Projeto(string nome, string localizacao,
-        decimal valorTotal, Guid clienteId, Guid liderTecnicoId)
+        decimal valorTotal, Guid clienteId, Guid liderTecnicoId, DateTime dataInicio)
     {
         Nome = new Nome(nome);
-        DataInicio = DateTime.Now;
+        DataInicio = dataInicio;
         DataFinal = null;
         ValidateDomain(localizacao, ValorTotal);
 
@@ -64,6 +64,7 @@ public class Projeto : Entity
     {
         Nome = new Nome(nome);
         ValidateDomain(localizacao, valorTotal);
+        ValidateData(dataFinal, dataInicio);
         
         Localizacao = localizacao;
         DataInicio = dataInicio;
@@ -72,12 +73,10 @@ public class Projeto : Entity
         LiderTecnicoId = liderTecnicoId;
     }
 
-    private void AlterarDataConclusao(DateTime novaData)
+    private void ValidateData(DateTime? dataFinal, DateTime dataInicio)
     {
-        DomainExceptionValidation.When(novaData < DataInicio,
-            "A previsão deve ser futura.");
-        
-        DataFinal = novaData;
+        DomainExceptionValidation.When((dataFinal <= dataInicio),
+            "A data de conclusão não pode ser anterior ou igual à data de início do projeto.");
     }
 
 }

@@ -14,4 +14,8 @@ public record Email
         
         Endereco = endereco;
     }
+    
+    public static implicit operator string(Email email) => email.Endereco;
+
+    public override string ToString() => Endereco;
 }
