@@ -1,0 +1,43 @@
+# Ignore build outputs
+**/bin/
+**/obj/
+
+# Rider / JetBrains
+.idea/
+*.sln.iml
+
+# User files
+*.user
+*.suo
+.vscode/
+
+# Docker files
+**/Dockerfile.*
+
+# Logs
+*.log
+
+# Local settings
+appsettings.*.json
+
+# Git
+.git
+.gitignore
+
+# NuGet
+packages/
+*.nupkg
+
+# OS files
+Thumbs.db
+Desktop.ini
+
+# Rider caches
+.idea/
+*.sln.DotSettings.user
+
+# Ignore Visual Studio specific files
+.vs/
+
+# Other
+*.db
