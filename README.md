@@ -25,7 +25,8 @@ Projeto_Solar/
 ├── Solar.Application            # Lógica de Negócio e Serviços
 ├── Solar.Domain                 # Entidades e Interfaces
 ├── Solar.Infrastructure         # Persistência e Banco de Dados
-└── Solar.CrossCutting          # Configuração de Dependências
+├── Solar.CrossCutting          # Configuração de Dependências
+└── Solar.Tests                 # Testes Unitários
 ```
 
 ### 🎯 Princípios da Clean Architecture
@@ -71,6 +72,13 @@ A Clean Architecture nos permite:
 - Configuração de serviços
 - Registros globais
 
+#### **Solar.Tests** 🧪
+- Testes unitários para controllers
+- Mocks de serviços com Moq
+- Cobertura de cenários de sucesso e erro
+- Testes de validação de dados
+- Utiliza xUnit como framework de testes
+
 ---
 
 ## 🚀 Recursos Principais
@@ -113,10 +121,34 @@ A Clean Architecture nos permite:
 - ✅ **Entity Framework Core**: ORM para acesso a dados com migrations
 - ✅ **Banco de Dados MySQL**: Suporte a MySQL via Pomelo
 - ✅ **Injeção de Dependências**: Configuração centralizada de IoC
+- ✅ **Testes Unitários**: Cobertura completa de testes para todos os controllers com xUnit e Moq
 
 ---
 
-## 🛠️ Tecnologias Utilizadas
+## 🧪 Testes Unitários
+
+O projeto inclui cobertura completa de testes unitários para todos os controllers utilizando **xUnit** e **Moq**:
+
+### Cobertura de Testes
+
+- **ClienteControllerTests**: 8 testes
+- **ProjetoControllerTests**: 8 testes
+- **TecnicoControllerTests**: 8 testes
+- **ProcedimentoControllerTests**: 8 testes
+
+**Total: 32 testes unitários**
+
+### Executar Testes
+
+```bash
+dotnet test
+```
+
+Os testes cobrem cenários de:
+- Requisições bem-sucedidas (200 OK, 201 Created)
+- Erros e exceções (404 Not Found)
+- Validação de dados
+- Operações CRUD completas
 
 | Tecnologia | Versão | Propósito |
 |-----------|--------|----------|
@@ -126,6 +158,8 @@ A Clean Architecture nos permite:
 | Pomelo | - | Suporte MySQL |
 | FluentValidation | 11.3.1 | Validação de dados |
 | Swagger/Swashbuckle | 6.6.2 | Documentação API |
+| xUnit | - | Framework de testes |
+| Moq | - | Mocking para testes |
 | MySQL | - | Banco de dados |
 | Docker | - | Containerização |
 
