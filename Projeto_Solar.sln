@@ -10,6 +10,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Solar.CrossCutting", "Solar
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Solar.API", "Solar.API\Solar.API.csproj", "{B3A63933-E0FA-4B97-996A-EF49F478DE25}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Solar.Tests", "Solar.Tests\Solar.Tests.csproj", "{46BA0730-9CBB-4AB2-8BEC-89B04A98F144}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -36,5 +38,9 @@ Global
 		{B3A63933-E0FA-4B97-996A-EF49F478DE25}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B3A63933-E0FA-4B97-996A-EF49F478DE25}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B3A63933-E0FA-4B97-996A-EF49F478DE25}.Release|Any CPU.Build.0 = Release|Any CPU
+		{46BA0730-9CBB-4AB2-8BEC-89B04A98F144}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{46BA0730-9CBB-4AB2-8BEC-89B04A98F144}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{46BA0730-9CBB-4AB2-8BEC-89B04A98F144}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{46BA0730-9CBB-4AB2-8BEC-89B04A98F144}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

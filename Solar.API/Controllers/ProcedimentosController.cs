@@ -13,7 +13,7 @@ public class ProcedimentosController : ControllerBase
 {
     private readonly IProcedimentoServices _procedimentoServices;
 
-    public ProcedimentosController(IProcedimentoServices procedimentoServices, ILogger<ProcedimentosController> logger)
+    public ProcedimentosController(IProcedimentoServices procedimentoServices)
     {
         _procedimentoServices = procedimentoServices;
     }
